@@ -1,0 +1,167 @@
+{
+  "name": "artsoft/yii2-art-cms",
+  "description": "Art CMS Based on Yii 2 Advanced Project Template",
+  "keywords": [
+    "art",
+    "cms",
+    "yii2"
+  ],
+  "homepage": "http://www.yee-soft.com/",
+  "type": "project",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Taras Makitra",
+      "email": "makitrataras@gmail.com"
+    },
+    {
+      "name": "Artur Markov",
+      "email": "artmarkov@mail.ru"
+    }
+  ],
+   "support": {
+    "issues": "https://github.com/yeesoft/yii2-yee-cms/issues/new",
+    "source": "https://github.com/yeesoft/yii2-yee-cms"
+ },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.0.0",
+    "yiisoft/yii2": "~2.0.13",
+    "yiisoft/yii2-bootstrap": "~2.0.6",
+    "yiisoft/yii2-swiftmailer": "~2.0.6",
+    "vlucas/phpdotenv": "^2.4",
+    "bizley/migration": "^3.1",
+    "artsoft/yii2-art-seo": "dev-master",
+    "artsoft/yii2-art-settings": "dev-master",
+    "artsoft/yii2-art-translation": "dev-master",
+    "artsoft/yii2-art-menu": "dev-master",
+    "artsoft/yii2-comments": "dev-master",
+    "artsoft/yii2-art-comment": "dev-master",
+    "artsoft/yii2-art-auth": "dev-master",
+    "artsoft/yii2-art-user": "dev-master",
+    "artsoft/yii2-art-post": "dev-master",   
+    "artsoft/yii2-art-page": "dev-master",
+    "artsoft/yii2-art-media": "dev-master",
+    "artsoft/yii2-art-core": "dev-master",
+    "artsoft/yii2-art-generator": "dev-master",
+    "artsoft/art-i18n": "dev-master",
+    "artsoft/yii2-art-mediamanager": "dev-master",
+    "artsoft/yii2-art-portfolio": "dev-master",
+    "artsoft/yii2-art-block": "dev-master",   
+    "artsoft/yii2-art-carousel": "dev-master",
+    "artsoft/yii2-art-parallax": "dev-master",
+    "artsoft/yii2-art-feedback": "dev-master",
+    "artsoft/yii2-art-slides": "dev-master",
+    "artsoft/yii2-art-dbmanager": "dev-master"
+    
+  },
+  "require-dev": {
+    "yiisoft/yii2-codeception": "~2.0.5",
+    "yiisoft/yii2-debug": "~2.0.9",
+    "yiisoft/yii2-gii": "~2.0.5",
+    "yiisoft/yii2-faker": "~2.0.3"
+  },
+  "config": {
+      "process-timeout": 1800,
+      "github-oauth": {
+         "github.com": "8e9cf0a2ca8872fecb6ff4d71d179a39f443998d"
+      }
+    },
+  "extra": {
+    "asset-installer-paths": {
+      "npm-asset-library": "vendor/npm",
+      "bower-asset-library": "vendor/bower"
+    }
+  },
+  "repositories": [
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-seo"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-settings"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-translation"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-menu"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-comments"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-comment"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-auth"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-user"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-post"
+        },        
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-page"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-media"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-core"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/yii2-art-generator"
+        },
+        {
+            "type": "path",
+            "url": "../artsoft/art-i18n"
+        },
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-mediamanager"                
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-carousel"
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-parallax"
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-feedback"
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-slides"
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-dbmanager"
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-block"
+        },        
+         {
+            "type": "path",
+            "url": "../artsoft/yii2-art-portfolio"
+        }
+]
+}
