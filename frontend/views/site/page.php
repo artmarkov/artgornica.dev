@@ -8,11 +8,20 @@ use yii\helpers\Html;
 $this->title = $page->title;
 $this->params['breadcrumbs'][] = $page->title;
 ?>
+<div class="site-page">
+    <section  class="container">
+        <div class="row">
+            <div class="left col-md-12">          
+                <?= $page->content ?>
 
-    <div class="page">
-        <h1><?= Html::encode($page->title) ?></h1>
-        <div><?= $page->content ?></div>
-    </div>
-<?php if ($page->comment_status == Page::COMMENT_STATUS_OPEN): ?>
-    <?php echo Comments::widget(['model' => Page::className(), 'model_id' => $page->id]); ?>
-<?php endif; ?>
+                <div class="divider"><!-- divider -->
+                    <i class="fa fa-star"></i>
+                </div>
+
+                <?php if ($page->comment_status == Page::COMMENT_STATUS_OPEN): ?>
+                    <?php echo Comments::widget(['model' => Page::className(), 'model_id' => $page->id]); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+</div>

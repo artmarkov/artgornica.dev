@@ -1,0 +1,100 @@
+<?php
+
+namespace frontend\modules\auth\models\forms;
+
+use artsoft\models\User;
+use Yii;
+use yii\base\Model;
+use himiklab\yii2\recaptcha\ReCaptchaValidator;
+
+class ResetPasswordForm extends Model
+{
+    /**
+     * @var User
+     */
+    protected $user;
+
+    /**
+     * @var string
+     */
+    public $email;
+
+    /**
+     * @var string
+     */
+    public $reCaptcha;
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['email', 'reCaptcha'], 'required'],
+            ['email', 'trim'],
+            ['email', 'email'],
+            ['email', 'validateEmailConfirmedAndUserActive'],
+            [
+                ['reCaptcha'], ReCaptchaValidator::className(),
+                'secret' => Yii::$app->reCaptcha->secret,
+                'uncheckedMessage' => Yii::t('art/auth', 'Please confirm that you are not a bot.')
+            ],
+        ];
+    }
+
+    /**
+     * @return bool
+     */
+    public function validateEmailConfirmedAndUserActive()
+    {
+        if (!Yii::$app->art->checkAttempts()) {
+            $this->addError('email', Yii::t('art/auth', 'Too many attempts'));
+            return false;
+        }
+
+        $user = User::findOne([
+            'email' => $this->email,
+            'email_confirmed' => 1,
+            'status' => User::STATUS_ACTIVE,
+        ]);
+
+        if ($user) {
+            $this->user = $user;
+        } else {
+            $this->addError('email', Yii::t('art/auth', 'E-mail is invalid'));
+        }
+    }
+
+    /**
+     * @return array
+     */
+    public function attributeLabels()
+    {
+        return [
+            'email' => 'E-mail',
+            'reCaptcha' => Yii::t('art/auth', 'Captcha'),
+        ];
+    }
+
+    /**
+     * @param bool $performValidation
+     *
+     * @return bool
+     */
+    public function sendEmail($performValidation = true)
+    {
+        if ($performValidation AND !$this->validate()) {
+            return false;
+        }
+
+        $this->user->generateConfirmationToken();
+        $this->user->save(false);
+
+        return Yii::$app->mailer->compose(Yii::$app->art->emailTemplates['password-reset'],
+            ['user' => $this->user])
+            ->setFrom(Yii::$app->art->emailSender)
+            ->setTo($this->email)
+            ->setSubject(Yii::t('art/auth', 'Password reset for') . ' ' . Yii::$app->name)
+            ->send();
+    }
+}

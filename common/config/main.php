@@ -3,15 +3,21 @@ return [
     'name' =>  'My Application',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'bootstrap' => ['comments', 'art'],
-    'language' => 'en-US',
+    'language' => 'ru',
     'sourceLanguage' => 'en-US',
     'components' => [
         'art' => [
             'class' => 'artsoft\Art',
             'languages' => [
-              'en-US' => 'English',
+             // 'en-US' => 'English',
               'ru' => 'Россия',
             ],
+            'languageRedirects' => ['ru' => 'ru'],
+            'emailTemplates' => [
+                 'send-contact' => '@frontend/modules/auth/views/mail/send-contact-html',
+            ],
+            'usernameRegexp' => '/^(\w|\d)+$/',
+            'usernameBlackRegexp' => '/^(.)*moder(.)*$/i',
         ],
         'settings' => [
             'class' => 'artsoft\components\Settings'

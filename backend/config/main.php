@@ -63,7 +63,7 @@ $config =  [
             ],
         ],
         'post' => [
-            'class' => 'artsoft\post\PostModule',
+            'class' => 'backend\modules\post\PostModule',
         ],
         'page' => [
             'class' => 'artsoft\page\PageModule',
@@ -96,6 +96,12 @@ $config =  [
         'feedback' => [
 	    'class' => 'artsoft\feedback\FeedbackModule',
 	],
+        'event' => [
+            'class' => 'backend\modules\event\EventModule',
+        ],
+        'portfolio' => [
+            'class' => 'artsoft\portfolio\PortfolioModule',
+        ],
     ],
     'components' => [
         'request' => [

@@ -4,7 +4,7 @@ $params = array_merge(
     require(__DIR__ . '/params.php')
 );
 
-$config =  [
+return [
     'id' => 'frontend',
     'homeUrl' => '/',
     'basePath' => dirname(__DIR__),
@@ -12,15 +12,15 @@ $config =  [
     'controllerNamespace' => 'frontend\controllers',
     'modules' => [
         'auth' => [
-            'class' => 'artsoft\auth\AuthModule',
+            'class' => 'frontend\modules\auth\AuthModule',
+        ],
+        'sliderrevolution' => [
+        'class' => 'frontend\modules\sliderrevolution\SliderModule',
+        'pluginLocation' => '@frontend/web/plugins/revolution-slider',
         ],
     ],
     'components' => [
         'view' => [
-            'theme' => [
-                'class' => 'frontend\components\Theme',
-                'theme' => env('FRONTEND_THEME'),
-            ],
             'as seo' => [
                 'class' => 'artsoft\seo\components\SeoViewBehavior',
             ]
@@ -29,7 +29,6 @@ $config =  [
             'class' => 'artsoft\seo\components\Seo',
         ],
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => env('FRONTEND_COOKIE_VALIDATION_KEY'),
             'baseUrl' => '',
         ],
@@ -44,15 +43,19 @@ $config =  [
             'multilingualRules' => [
                 '<module:auth>/<action:\w+>' => '<module>/default/<action>',
                 '<controller:(category|tag)>/<slug:[\w \-]+>' => '<controller>/index',
-                '<controller:(category|tag)>' => '<controller>/index',
-                '<slug:[\w \-]+>' => 'site/index/',
+                '<controller:(category|tag|event)>' => '<controller>/index',
+                '<slug:[\w \-]+>' => 'site/blog/',
                 '/' => 'site/index',
                 '<action:[\w \-]+>' => 'site/<action>',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ],
             'nonMultilingualUrls' => [
                 'auth/default/oauth',
             ],
+        ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -66,21 +69,37 @@ $config =  [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'authClientCollection' => require __DIR__ . '/auth.php',
+         'assetManager' => [
+            'bundles' => [
+                'yii\bootstrap\BootstrapAsset' => [
+                    'css' => ['https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css'],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'js'=> ['https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js']
+                ],
+                'yii\web\JqueryAsset' => [
+                    'js' => [YII_DEBUG ? 'https://code.jquery.com/jquery-2.0.3.js' : 'https://code.jquery.com/jquery-2.0.3.min.js'],
+                    'jsOptions' => ['type' => 'text/javascript'],
+                ],
+            ],
+        ],
+        'searcher' => [
+            'class' => \vintage\search\SearchComponent::class,
+            'models' => [
+                'post' => [
+                    'class' => \frontend\models\PostBlogSearch::class,
+                    'label' => 'Posts',
+                ],
+                'category' => [
+                    'class' => \frontend\models\CategoryBlogSearch::class,
+                    'label' => 'Category',
+                ],
+                'tag' => [
+                    'class' => \frontend\models\TagBlogSearch::class,
+                    'label' => 'Tag',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
-
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = [
-        'class' => 'yii\debug\Module',
-    ];
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = [
-        'class' => 'yii\gii\Module',
-    ];
-}
-
-return $config;

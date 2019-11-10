@@ -1,0 +1,79 @@
+<?php
+
+/**
+ * @var $this yii\web\View
+ * @var $model artsoft\auth\models\forms\LoginForm
+ */
+use artsoft\auth\widgets\AuthChoice;
+use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+use kartik\switchinput\SwitchInput;
+
+$this->title = Yii::t('art/auth', 'Authorization');
+
+$col12 = $this->context->module->gridColumns;
+$col9 = (int) ($col12 * 3 / 4);
+$col6 = (int) ($col12 / 2);
+$col3 = (int) ($col12 / 4);
+?>
+
+    <div id="login-wrapper">
+        <div class="row">
+            <div class="col-md-<?= $col6 ?> col-md-offset-<?= $col3 ?>">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <?php
+                        $form = ActiveForm::begin([
+                            'id' => 'login-form',
+                            'options' => ['autocomplete' => 'off'],
+                            'validateOnBlur' => false,
+                            'fieldConfig' => [
+                                //'template' => "{input}\n{error}",
+                            ],
+                        ])
+                        ?>
+
+                        <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username'), 'autocomplete' => 'off'])->label(false) ?>
+
+                        <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password'), 'autocomplete' => 'off'])->label(false) ?>
+
+                        <?= $form->field($model, 'rememberMe')->widget(SwitchInput::classname(), [
+                           
+                                'pluginOptions' => [
+                                    'size' => 'small',
+                                ],
+                            ]) ?>
+                        
+                        <?= Html::submitButton(Yii::t('art/auth', 'Login'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
+
+                        <div class="row registration-block">
+                            <div class="col-sm-<?= $col6 ?>">
+                                <?= Html::a(Yii::t('art/auth', "Registration"), ['default/signup']) ?>
+                            </div>
+                            <div class="col-sm-<?= $col6 ?> text-right">
+                                <?= Html::a(Yii::t('art/auth', "Forgot password?"), ['default/reset-password']) ?>
+                            </div>
+                        </div>
+
+                        <?php ActiveForm::end() ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<?php
+$css = <<<CSS
+
+#login-wrapper {
+	position: relative;
+	top: 30%;
+}
+#login-wrapper .registration-block {
+	margin-top: 15px;
+}
+CSS;
+
+$this->registerCss($css);
+?>

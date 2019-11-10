@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 /* @var $name string */
 /* @var $message string */
@@ -8,21 +7,28 @@
 use yii\helpers\Html;
 
 $this->title = $name;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <section class="container">
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
-    </div>
+        <div class="row">
 
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
+            <div class="col-md-12">
 
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
+                <div class="alert alert-danger">
+                    <i class="fa fa-frown-o"></i> 
+                    <?= nl2br(Html::encode($message)) ?>
+                </div>
+
+                <div class="e404"><?= nl2br(Html::encode($code)) ?></div> 
+            </div>
+
+
+        </div>
+
+    </section>
 
 </div>
+
