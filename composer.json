@@ -54,8 +54,8 @@
     "artsoft/yii2-art-feedback": "dev-master",
     "artsoft/yii2-art-slides": "dev-master",
     "artsoft/yii2-art-dbmanager": "dev-master",
-    "creocoder/yii2-nested-sets": "^0.9.0",
-    "klisl/yii2-nested-sets-drag-and-drop": "^1.3"
+    "edofre/yii2-fullcalendar-scheduler": "*",
+    "edofre/yii2-fullcalendar": "*"
     
   },
   "require-dev": {
@@ -65,11 +65,11 @@
     "yiisoft/yii2-faker": "~2.0.3"
   },
   "config": {
-      "process-timeout": 1800,
-      "github-oauth": {
-         "github.com": "69cb5cf69537c029d1466c6a2d43073e8a7c283e"
-      }
-    },
+    "process-timeout": 1800,
+    "github-oauth": {
+
+    }
+  },
   "extra": {
     "asset-installer-paths": {
       "npm-asset-library": "vendor/npm",

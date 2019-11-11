@@ -30,9 +30,9 @@ use artsoft\widgets\ActiveForm;
 class DefaultController extends \artsoft\controllers\BaseController
 {
     /**
-     * @var array
+     * @var array  'signup',
      */
-    public $freeAccessActions = ['login', 'logout', 'captcha', 'oauth', 'signup',
+    public $freeAccessActions = ['login', 'logout', 'captcha', 'oauth', 
         'confirm-email', 'confirm-registration-email', 'confirm-email-receive',
         'reset-password', 'reset-password-request', 'update-password', 'set-email',
         'set-username', 'set-password', 'profile', 'upload-avatar', 'remove-avatar',

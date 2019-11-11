@@ -22,7 +22,7 @@ class ResetPasswordForm extends Model
     /**
      * @var string
      */
-    public $reCaptcha;
+    public $captcha;
 
     /**
      * @inheritdoc
@@ -30,15 +30,11 @@ class ResetPasswordForm extends Model
     public function rules()
     {
         return [
-            [['email', 'reCaptcha'], 'required'],
+            ['captcha', 'captcha', 'captchaAction' => '/auth/default/captcha'],
+            [['email', 'captcha'], 'required'],
             ['email', 'trim'],
             ['email', 'email'],
-            ['email', 'validateEmailConfirmedAndUserActive'],
-            [
-                ['reCaptcha'], ReCaptchaValidator::className(),
-                'secret' => Yii::$app->reCaptcha->secret,
-                'uncheckedMessage' => Yii::t('art/auth', 'Please confirm that you are not a bot.')
-            ],
+            ['email', 'validateEmailConfirmedAndUserActive'],            
         ];
     }
 

@@ -54,20 +54,26 @@ AvatarAsset::register($this);
 //                    ];
                     // $menuItems = Menu::getMenuItems('main-menu');
                     if (Yii::$app->user->isGuest) {
-                        $menuItems[] = [
-                            'label' => '<i class="fa fa-user-plus" style="margin: 5px;"></i>' . Yii::t('art/auth', 'Signup'),
-                            'url' => \yii\helpers\Url::to(['/auth/default/signup'])
-                        ];
-                        $menuItems[] = [
-                            'label' => '<i class="fa fa-sign-in" style="margin: 5px;"></i>' . Yii::t('art/auth', 'Enter'),
-                            'url' => \yii\helpers\Url::to(['/auth/default/login'])
-                        ];
+//                        $menuItems[] = [
+//                            'label' => '<i class="fa fa-user-plus" style="margin: 5px;"></i>' . Yii::t('art/auth', 'Signup'),
+//                            'url' => \yii\helpers\Url::to(['/auth/default/signup'])
+//                        ];
+//                        $menuItems[] = [
+//                            'label' => '<i class="fa fa-sign-in" style="margin: 5px;"></i>' . Yii::t('art/auth', 'Enter'),
+//                            'url' => \yii\helpers\Url::to(['/auth/default/login'])
+//                        ];
+                         $menuItems[] = [];
                     } else {
                         $avatar = ($userAvatar = Yii::$app->user->identity->getAvatar('small')) ? $userAvatar : AvatarAsset::getDefaultAvatar('small');
-                        $menuItems[] = [
-                            'label' => '<img src="' . $avatar . '" class="user-image" alt="User Image"/>' . Yii::$app->user->identity->username,
-                            'url' => ['/site/private'],
-                        ];
+//                        $menuItems[] = [
+//                            'label' => '<img src="' . $avatar . '" class="user-image" alt="User Image"/>' . Yii::$app->user->identity->username,
+//                            'url' => ['/site/private'],
+//                        ];
+                         $menuItems[] = [
+                            'label' => '<i class="fa fa-user" style="margin: 5px;"></i>' . Yii::t('art', 'Control Panel'),
+                            'url' => ['/admin', 'language' => false],
+                            'template' => '<a href="{url}" data-method = "post">{label}</a>'                           
+                        ]; 
                         $menuItems[] = [
                             'label' => '<i class="fa fa-sign-out" style="margin: 5px;"></i>' . Yii::t('art/auth', 'Logout'),
                             'url' => ['/auth/default/logout', 'language' => false],

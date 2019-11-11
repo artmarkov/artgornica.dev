@@ -222,39 +222,40 @@ class SiteController extends \artsoft\controllers\BaseController
      *
      * @return mixed
      */
-    public function actionPrivate()
-    {
-//         if($this->module->profileLayout){
-//            $this->layout = $this->module->profileLayout;
+//    public function actionPrivate()
+//    {
+//        
+////         if($this->module->profileLayout){
+////            $this->layout = $this->module->profileLayout;
+////        }
+//                
+//        
+//          if (Yii::$app->user->isGuest) {
+//            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
 //        }
-                
-        
-          if (Yii::$app->user->isGuest) {
-            throw new NotFoundHttpException(Yii::t('yii', 'Page not found.'));
-        }
-
-        $query = EventSchedule::find()
-                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
-                ->where(['event_schedule_users.user_id' => Yii::$app->user->id]);
-
-        $pagination = new Pagination([
-            'totalCount' => $query->count(), 
-            'defaultPageSize' => Yii::$app->settings->get('reading.page_size', 10)
-            ]);
-        $model = $query->orderBy('start_timestamp DESC')->offset($pagination->offset)
-                ->limit($pagination->limit)
-                ->all();
-                //echo '<pre>' . print_r($model, true) . '</pre>';
-       
-        $model_profile = \artsoft\models\User::findIdentity(Yii::$app->user->id);
-
-        if ($model_profile->load(Yii::$app->request->post()) AND $model_profile->save()) {
-            Yii::$app->session->setFlash('success', Yii::t('art', 'Your item has been updated.'));
-        }
-
-        return $this->renderIsAjax('private', compact('model_profile', 'model', 'pagination'));
-        
-    }
+//
+//        $query = EventSchedule::find()
+//                ->innerJoin('event_schedule_users', 'event_schedule_users.schedule_id = event_schedule.id')
+//                ->where(['event_schedule_users.user_id' => Yii::$app->user->id]);
+//
+//        $pagination = new Pagination([
+//            'totalCount' => $query->count(), 
+//            'defaultPageSize' => Yii::$app->settings->get('reading.page_size', 10)
+//            ]);
+//        $model = $query->orderBy('start_timestamp DESC')->offset($pagination->offset)
+//                ->limit($pagination->limit)
+//                ->all();
+//                //echo '<pre>' . print_r($model, true) . '</pre>';
+//       
+//        $model_profile = \artsoft\models\User::findIdentity(Yii::$app->user->id);
+//
+//        if ($model_profile->load(Yii::$app->request->post()) AND $model_profile->save()) {
+//            Yii::$app->session->setFlash('success', Yii::t('art', 'Your item has been updated.'));
+//        }
+//
+//        return $this->renderIsAjax('private', compact('model_profile', 'model', 'pagination'));
+//        
+//    }
     /**
      * 
      * @param type $q

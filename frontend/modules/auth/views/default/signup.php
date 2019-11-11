@@ -36,7 +36,10 @@ $col3 = (int) ($col12 / 4);
 
                     <?= $form->field($model, 'repeat_password')->passwordInput(['maxlength' => 255]) ?>
                   
-                    <?= $this->render('@common/widgets/views/_captcha', ['model' => $model, 'form' => $form]) ?>
+                     <?= $form->field($model, 'captcha')->widget(Captcha::className(), [
+                        'template' => '<div class="row"><div class="col-sm-' . $col3 . '">{image}</div><div class="col-sm-' . $col3 . '">{input}</div></div>',
+                        'captchaAction' => [\yii\helpers\Url::to(['/auth/captcha'])]
+                    ]) ?>
                     
                     <?= Html::submitButton(Yii::t('art/auth', 'Signup'), ['class' => 'btn btn-lg btn-primary btn-block']) ?>
 
