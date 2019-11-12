@@ -70,7 +70,7 @@ class ItemProgrammController extends DefaultController
             } elseif ($model->load(Yii::$app->request->post())) {
                 
                 if ($model->save()) {
-                    Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Your item has been created.'));
+                    Yii::$app->session->setFlash('success', Yii::t('art', 'Your item has been created.'));
                     return $this->redirect(Yii::$app->request->referrer);
                 }
             }
@@ -98,7 +98,7 @@ class ItemProgrammController extends DefaultController
         } elseif ($model->load(Yii::$app->request->post())) {
             
             if ($model->save()) {
-                Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Your item has been updated.'));
+                Yii::$app->session->setFlash('info', Yii::t('art', 'Your item has been updated.'));
                 return $this->redirect(Yii::$app->request->referrer);
             }
 
@@ -117,7 +117,7 @@ class ItemProgrammController extends DefaultController
         $model = EventItemProgramm::findOne($id);
         if (empty($model)) return false;
         $model->delete();
-        Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Your item has been deleted.'));
+        Yii::$app->session->setFlash('info', Yii::t('art', 'Your item has been deleted.'));
         return $this->redirect(Yii::$app->request->referrer); 
     }
     /**

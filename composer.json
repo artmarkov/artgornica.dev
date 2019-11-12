@@ -55,8 +55,7 @@
     "artsoft/yii2-art-slides": "dev-master",
     "artsoft/yii2-art-dbmanager": "dev-master",
     "kartik-v/yii2-widget-select2": "dev-master",
-    "npm-asset/fullcalendar": "v3.8.0",
-    "npm-asset/fullcalendar-scheduler": "1.9.1"
+    "kartik-v/yii2-widget-depdrop": "@dev"
     
   },
   "require-dev": {

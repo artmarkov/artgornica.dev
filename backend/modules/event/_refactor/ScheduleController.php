@@ -171,7 +171,7 @@ class ScheduleController extends DefaultController
         } elseif ($model->load(Yii::$app->request->post())) {
             
             if ($model->save()) {
-                Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Your item has been created.'));
+                Yii::$app->session->setFlash('info', Yii::t('art', 'Your item has been created.'));
                 return $this->redirect(Yii::$app->request->referrer);
             }
 
@@ -194,7 +194,7 @@ class ScheduleController extends DefaultController
         } elseif ($model->load(Yii::$app->request->post())) {
             
             if ($model->save()) {
-                Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Your item has been updated.'));
+                Yii::$app->session->setFlash('info', Yii::t('art', 'Your item has been updated.'));
                 return $this->redirect(Yii::$app->request->referrer);
             }
 

@@ -30,3 +30,7 @@ phpunit.phar
 
 # env files
 .env
+backend/modules/event/views/programm/_form.php
+backend/modules/event/views/programm/_tab-gallery.php
+backend/modules/event/views/programm/_tab-main.php
+backend/modules/event/views/programm/_tab-programm.php

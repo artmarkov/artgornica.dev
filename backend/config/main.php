@@ -58,9 +58,27 @@ $config =  [
             'class' => 'artsoft\media\MediaModule',
             'routes' => [
                 'baseUrl' => '', // Base absolute path to web directory
-                'basePath' => '@frontend/web', // Base web directory url
+                'basePath' => '@public', // Base web directory url
                 'uploadPath' => 'uploads', // Path for uploaded files in web directory
             ],
+            'thumbs' => [
+            'small' => [
+                'name' => 'Мелкий',
+                'size' => [128, 72],
+            ],
+            'medium' => [
+                'name' => 'Средний',
+                'size' => [832, 468],
+            ],
+            'large' => [
+                'name' => 'Большой',
+                'size' => [1280, 720],
+            ],
+             'great' => [
+                'name' => 'Очень Большой',
+                'size' => [1920, 1080],
+            ],
+        ],
         ],
         'post' => [
             'class' => 'backend\modules\post\PostModule',

@@ -38,7 +38,7 @@ class MethodsController extends DefaultController
         /* @var $model \artsoft\db\ActiveRecord */
         $model = $this->findModel($id);
         if($model->delete()) {
-             Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Your item has been deleted.'));
+             Yii::$app->session->setFlash('info', Yii::t('art', 'Your item has been deleted.'));
         }
        
         return $this->redirect($this->getRedirectPage('delete', $model));

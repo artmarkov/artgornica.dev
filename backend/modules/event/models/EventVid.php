@@ -140,7 +140,7 @@ class EventVid extends \artsoft\db\ActiveRecord
             }
             
             if($link) {
-                Yii::$app->session->setFlash('crudMessage', Yii::t('art', 'Integrity violation. Delete the associated data in the models first:') . ' ' . $message);
+                Yii::$app->session->setFlash('info', Yii::t('art', 'Integrity violation. Delete the associated data in the models first:') . ' ' . $message);
                 return false;            
             }
             else {                

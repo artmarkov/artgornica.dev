@@ -195,3 +195,14 @@ JS;
 
 $this->registerJs($js);
 ?>
+<?php
+$css = <<<CSS
+        
+    #nested-grid.grid-view tbody tr td {
+        height: auto !important; 
+    }
+        
+CSS;
+
+$this->registerCss($css);
+?>
