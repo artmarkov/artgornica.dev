@@ -4,7 +4,7 @@ use artsoft\widgets\ActiveForm;
 use backend\modules\event\models\EventItem;
 use backend\modules\event\models\EventPractice;
 use artsoft\helpers\Html;
-use backend\modules\media\widgets\TinyMce;
+use artsoft\media\widgets\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventItem */
@@ -21,7 +21,7 @@ use backend\modules\media\widgets\TinyMce;
     ?>
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-8">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -40,7 +40,7 @@ use backend\modules\media\widgets\TinyMce;
             <div class="panel panel-default">
                 <div class="panel-body">
                     
-                    <?= \backend\modules\mediamanager\widgets\MediaManagerWidget::widget(['model' => $model]); ?>
+                    <?= \artsoft\mediamanager\widgets\MediaManagerWidget::widget(['model' => $model]); ?>
                     
                 </div> 
             </div>
@@ -48,7 +48,7 @@ use backend\modules\media\widgets\TinyMce;
             <?php endif; ?>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <div class="panel panel-default">
                 <div class="panel-body">
@@ -99,7 +99,7 @@ use backend\modules\media\widgets\TinyMce;
                                 <?= Html::submitButton(Yii::t('art', 'Save'), ['class' => 'btn btn-primary']) ?>
                                 <?= Html::a(Yii::t('art', 'Delete'),
                                     ['/event/default/delete', 'id' => $model->id], [
-                                    'class' => 'btn btn-default',
+                                    'class' => 'btn btn-danger',
                                     'data' => [
                                         'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                                         'method' => 'post',
