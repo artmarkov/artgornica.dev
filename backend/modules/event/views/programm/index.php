@@ -95,7 +95,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => function ($model)
                                 {
                         $item = \artsoft\mediamanager\models\MediaManager::getMediaFirst($model->className(), $model->id);
-                        !empty($item) ? $img = \backend\modules\media\models\Media::findById($item['media_id'])->getThumbs()['small'] : $img = '/images/noimg.png';
+                        !empty($item) ? $img = \artsoft\media\models\Media::findById($item['media_id'])->getThumbs()['small'] : $img = '/images/noimg.png';
                             return Html::img($img, ['class'=> 'dw-media-image']);
                     },
                             'format' => 'html',

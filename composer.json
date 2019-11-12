@@ -54,28 +54,31 @@
     "artsoft/yii2-art-feedback": "dev-master",
     "artsoft/yii2-art-slides": "dev-master",
     "artsoft/yii2-art-dbmanager": "dev-master",
-    "edofre/yii2-fullcalendar-scheduler": "*",
-    "edofre/yii2-fullcalendar": "*"
+    "kartik-v/yii2-widget-select2": "dev-master",
+    "npm-asset/fullcalendar": "v3.8.0",
+    "npm-asset/fullcalendar-scheduler": "1.9.1"
     
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "~2.0.5",
-    "yiisoft/yii2-debug": "~2.0.9",
-    "yiisoft/yii2-gii": "~2.0.5",
+    "yiisoft/yii2-debug": "~2.1.11",
+    "yiisoft/yii2-gii": "~2.1.2",
     "yiisoft/yii2-faker": "~2.0.3"
   },
-  "config": {
-    "process-timeout": 1800,
-    "github-oauth": {
+    "config": {       
+        "fxp-asset": { 
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
+        },        
+        "process-timeout": 1800,
+        "github-oauth": {
 
-    }
-  },
-  "extra": {
-    "asset-installer-paths": {
-      "npm-asset-library": "vendor/npm",
-      "bower-asset-library": "vendor/bower"
-    }
-  },
+        }
+    },
+    
+  
   "repositories": [
         {
             "type": "path",
