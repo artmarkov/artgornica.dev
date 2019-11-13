@@ -12,7 +12,7 @@ use artsoft\media\widgets\TinyMce;
                 <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
                 <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>
-
+                
                 <?= $form->field($model, 'assignment')->widget(TinyMce::className()); ?>
 
             </div>

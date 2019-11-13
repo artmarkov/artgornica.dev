@@ -88,7 +88,6 @@ use yii\helpers\ArrayHelper;
                     return implode(', ',
                         ArrayHelper::map($model->itemProgrammPractices, 'id', 'name'));
                 },
-                'options' => ['style' => 'width:350px'],
                 'format' => 'raw',
             ],   
             [
