@@ -18,8 +18,7 @@ use yii\helpers\ArrayHelper;
                     <div class="row">
                         <div class="col-md-6">
 
-                             <?=
-                            $form->field($model, 'item_id')->widget(Select2::classname(), [
+                             <?=  $form->field($model, 'item_id')->widget(Select2::classname(), [
 
                                 'data' => backend\modules\event\models\EventItem::getEventItemByName(),  
                                 'theme' => Select2::THEME_KRAJEE,
@@ -43,18 +42,8 @@ use yii\helpers\ArrayHelper;
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <?php Pjax::begin(); ?>
-   
-<?php
+    <?php Pjax::begin(); ?>  
 
-        $dataProvider = new \yii\data\ActiveDataProvider([
-            'query' => \backend\modules\event\models\EventItemProgramm::find()
-                ->andWhere(['in', 'programm_id' , $model->id])
-                ->orderBy('sortOrder'),
-            'sort' => false,
-        ]);
-        $dataProvider->pagination = false;
-?>
     <?= SortableGridView::widget([
         'id' => 'nested-grid',
         'dataProvider' => $dataProvider,

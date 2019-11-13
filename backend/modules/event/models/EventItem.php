@@ -243,5 +243,37 @@ class EventItem extends \artsoft\db\ActiveRecord
                 ->asArray()
                 ->one();    
     }
+     /**
+     * 
+     * @return type array
+     */
+     public  function getEventPracticesList()
+    {
+        // $data = array();
+         
+         $items = $this->eventPractices;      
+        echo '<pre>' . print_r($items, true) . '</pre>';
+        
+//        foreach ($items as $key => $item) :
+//          $content = '';
+//          $content .= Html::beginTag('div', ['id' => 'media-base']);
+//          $content .= Html::img(Media::findById($item['media_id'])->getDefaultThumbUrl());
+//          $content .= Html::endTag('div');
+//          $content .= Html::beginTag('div', ['id' => 'media-remove']);
+//          $content .= Html::tag('a','<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>', 
+//                                    [
+//                                        'class' => 'btn btn-sm btn-default remove-media-item', 
+//                                        'data-id' => $item['id'], 
+//                                        'href' => '#', 
+//                                        'alt' => '', 
+//                                        'title' => Yii::t('art', 'Delete')
+//                                    ]);
+//          $content .= Html::endTag('div');
+//          $data[$key] = ['content' => $content];
+//            
+//        endforeach;
+        
+       // return $data;
+    } 
     
 }

@@ -20,7 +20,7 @@ $form = ActiveForm::begin([
             'id' => 'tabs_event',
             'items' => [
                 [
-                    'label' => '<i class="fa fa-save"></i> ' . Yii::t('art/event', 'Save'),
+                    'label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('art/event', 'Main'),
                     'content' => $this->render('@backend/modules/event/views/programm/_tab-main', ['model' => $model, 'form' => $form]),
                 ],
                 [

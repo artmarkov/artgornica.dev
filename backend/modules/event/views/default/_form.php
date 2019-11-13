@@ -1,10 +1,6 @@
 <?php
 
 use artsoft\widgets\ActiveForm;
-use backend\modules\event\models\EventItem;
-use backend\modules\event\models\EventPractice;
-use artsoft\helpers\Html;
-use artsoft\media\widgets\TinyMce;
 
 /* @var $this yii\web\View */
 /* @var $model backend\modules\event\models\EventItem */
@@ -20,100 +16,52 @@ use artsoft\media\widgets\TinyMce;
         ])
     ?>
 
-    <div class="row">
-        <div class="col-md-8">
+<div class="event-programm-form">
+    <div class="tabs nomargin-top">
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    
-                    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'description')->widget(TinyMce::className()); ?>
-                    
-                    <?= $form->field($model, 'assignment')->widget(TinyMce::className()); ?>
-
-                </div>
-       
-            </div>
-             <?php if (!$model->isNewRecord) : ?>
-            
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    
-                    <?= \artsoft\mediamanager\widgets\MediaManagerWidget::widget(['model' => $model]); ?>
-                    
-                </div> 
-            </div>
-            
-            <?php endif; ?>
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="record-info">
-                        
-                        <?php if (!$model->isNewRecord): ?>
-
-                            <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;">
-                             <?= $model->attributeLabels()['created_at'] ?> :
-                                </label>
-                                <span><?= $model->createdDatetime ?></span>
-                            </div>
-
-                            <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;">
-                            <?= $model->attributeLabels()['updated_at'] ?> :
-                                </label>
-                                <span><?= $model->updatedDatetime ?></span>
-                            </div>
-                            <div class="form-group clearfix">
-                                <label class="control-label" style="float: left; padding-right: 5px;">
-                                    <?= $model->attributeLabels()['timeVolume'] ?> :
-                                </label>
-                                <span><?= $model->timeVolume . ' ' . Yii::t('art/event', 'min'); ?></span>
-                            </div>
-                        <?php endif; ?>
-                     
-                        <?= $form->field($model, 'practice_list')->widget(kartik\select2\Select2::className(), [
-                            'data' => EventPractice::getEventPracticeList(),
-                            'options' => [
-                                'placeholder' => Yii::t('art/event', 'Select Practice...'), 
-                                'multiple' => true
-                            ],                              
-                        ])
-                        ?>
-                    
-                        <div class="form-group clearfix">
-                            <label class="control-label" style="float: left; padding-right: 5px;"><?=  $model->attributeLabels()['id'] ?>: </label>
-                            <span><?=  $model->id ?></span>
-                        </div>
-
-                        <div class="form-group">
-                            <?php  if ($model->isNewRecord): ?>
-                                <?= Html::submitButton(Yii::t('art', 'Create'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('art', 'Cancel'), ['/event/default/index'], ['class' => 'btn btn-default']) ?>
-                            <?php  else: ?>
-                                <?= Html::submitButton(Yii::t('art', 'Save'), ['class' => 'btn btn-primary']) ?>
-                                <?= Html::a(Yii::t('art', 'Delete'),
-                                    ['/event/default/delete', 'id' => $model->id], [
-                                    'class' => 'btn btn-danger',
-                                    'data' => [
-                                        'confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-                                        'method' => 'post',
-                                    ],
-                                ]) ?>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <?= \yii\bootstrap\Tabs::widget([
+            'encodeLabels' => false,
+            'id' => 'tabs_event',
+            'items' => [
+                [
+                    'label' => '<i class="fa fa-pencil-square-o"></i> ' . Yii::t('art/event', 'Main'),
+                    'content' => $this->render('@backend/modules/event/views/default/_tab-main', ['model' => $model, 'form' => $form]),
+                ],
+                [
+                    'label' => '<i class="fa fa-briefcase"></i> ' . Yii::t('art/default', 'Practice'),
+                    'content' => $this->render('@backend/modules/event/views/default/_tab-practice', ['model' => $model]),
+                    'visible' => !$model->isNewRecord,
+                ],
+                [
+                    'label' => '<i class="fa fa-image"></i> ' . Yii::t('art/default', 'Album'),
+                    'content' => $this->render('@backend/modules/event/views/default/_tab-gallery', ['model' => $model]),
+                    'visible' => !$model->isNewRecord,
+                ],
+            ],
+        ])
+        ?>
     </div>
-
-    <?php  ActiveForm::end(); ?>
-
 </div>
+
+
+<?php ActiveForm::end(); ?>
+
+<?php $this->registerJsFile('https://code.jquery.com/jquery-1.11.2.min.js', ['position' => \yii\web\View::POS_HEAD]) ?>
+
+<?php
+$js = <<<JS
+        
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#tabs_event a[href="' + activeTab + '"]').tab('show');
+    }
+});
+
+JS;
+
+$this->registerJs($js, yii\web\View::POS_HEAD);
+?>
