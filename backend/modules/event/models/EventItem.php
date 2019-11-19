@@ -25,7 +25,9 @@ class EventItem extends \artsoft\db\ActiveRecord
 {
      public $gridPracticeSearch;
      public $mediaFirst;
-     
+     public $practice_list;
+
+
      /**
      * {@inheritdoc}
      */
@@ -42,13 +44,7 @@ class EventItem extends \artsoft\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-            ],
-            [
-                'class' => \artsoft\behaviors\ManyHasManyBehavior::className(),
-                'relations' => [
-                    'eventPractices' => 'practice_list',
-                ],
-            ],
+            ],            
             'sort' => [
                 'class' => SortableGridBehavior::className(),
                 'sortableAttribute' => 'sortOrder',

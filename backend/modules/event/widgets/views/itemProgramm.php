@@ -8,9 +8,8 @@ use himiklab\sortablegrid\SortableGridView;
 use yii\helpers\ArrayHelper;
 
 ?>
-<?php $form = ActiveForm::begin(); ?>
 
-<div class="works-author-widget">
+<div class="item-programm-widget">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
@@ -18,9 +17,10 @@ use yii\helpers\ArrayHelper;
                     <div class="row">
                         <div class="col-md-6">
 
-                             <?=  $form->field($model, 'item_id')->widget(Select2::classname(), [
-
+                             <?= Select2::widget([
+                                'id' => 'eventprogramm-item_id',
                                 'data' => backend\modules\event\models\EventItem::getEventItemByName(),  
+                                'name' => 'item_id',
                                 'theme' => Select2::THEME_KRAJEE,
                                 'options' => ['placeholder' => Yii::t('art/event', 'Select Events...')],
                                 'pluginOptions' => [
@@ -35,7 +35,7 @@ use yii\helpers\ArrayHelper;
                                         'asButton' => true,
                                     ],
                                 ],
-                             ])->label(Yii::t('art/event', 'Events List'));
+                             ]);
                             ?>
                            
                         </div>
@@ -113,7 +113,6 @@ use yii\helpers\ArrayHelper;
     </div>
 </div>
 
-<?php ActiveForm::end(); ?>
 
 <?php
 $js = <<<JS
@@ -133,7 +132,7 @@ $('.add-to-item-programm').on('click', function (e) {
     $.ajax({
         url: '/admin/event/item-programm/init-programm',
         data: {id: id, item_id: item_id},
-        type: 'GET',
+        type: 'POST',
         success: function (res) {
             if (!res)  alert('Please select event...');
            // console.log(res);
@@ -175,7 +174,7 @@ $('.remove-programm').on('click', function (e) {
     $.ajax({
         url: '/admin/event/item-programm/remove',
         data: {id: id},
-        type: 'GET'
+        type: 'POST'
     });
 });
 

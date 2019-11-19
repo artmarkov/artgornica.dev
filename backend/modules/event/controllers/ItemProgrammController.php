@@ -34,8 +34,8 @@ class ItemProgrammController extends DefaultController
      */
     public function actionInitProgramm()
     {
-        $id = Yii::$app->request->get('id');
-        $item_id = Yii::$app->request->get('item_id');
+        $id = Yii::$app->request->post('id');
+        $item_id = Yii::$app->request->post('item_id');
         if(empty($item_id)) return false;
         $model = new EventItemProgramm();
         
@@ -113,7 +113,7 @@ class ItemProgrammController extends DefaultController
      *
      */
     public function actionRemove() {
-        $id = Yii::$app->request->get('id');        
+        $id = Yii::$app->request->post('id');        
         $model = EventItemProgramm::findOne($id);
         if (empty($model)) return false;
         $model->delete();

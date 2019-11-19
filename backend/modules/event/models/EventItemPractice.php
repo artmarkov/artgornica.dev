@@ -3,6 +3,7 @@
 namespace backend\modules\event\models;
 
 use Yii;
+use himiklab\sortablegrid\SortableGridBehavior;
 
 /**
  * This is the model class for table "{{%event_item_practice}}".
@@ -24,6 +25,21 @@ class EventItemPractice extends \yii\db\ActiveRecord
         return '{{%event_item_practice}}';
     }
 
+     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'sort' => [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'sortOrder',
+                'scope' => function ($query) {
+                    $query->andWhere(['item_id' => $this->item_id]);
+                },
+            ],
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -31,24 +47,24 @@ class EventItemPractice extends \yii\db\ActiveRecord
     {
         return [
             [['item_id', 'practice_id'], 'required'],
+            [['item_id', 'practice_id'], 'unique', 'targetAttribute' => ['item_id', 'practice_id']],
             [['item_id', 'practice_id'], 'integer'],
             [['item_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventItem::className(), 'targetAttribute' => ['item_id' => 'id']],
             [['practice_id'], 'exist', 'skipOnError' => true, 'targetClass' => EventPractice::className(), 'targetAttribute' => ['practice_id' => 'id']],
         ];
     }
 
-    /**
+     /**
      * {@inheritdoc}
      */
     public function attributeLabels()
     {
-        return [
-            'id' => Yii::t('art/event', 'ID'),
-            'item_id' => Yii::t('art/event', 'Item ID'),
-            'practice_id' => Yii::t('art/event', 'Practice ID'),
+        return [          
+           'practiceName' => Yii::t('art/event', 'Name'),
+           'practiceTimeVolume' => Yii::t('art/event', 'Time Volume'),
+         
         ];
     }
-
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -63,5 +79,32 @@ class EventItemPractice extends \yii\db\ActiveRecord
     public function getPractice()
     {
         return $this->hasOne(EventPractice::className(), ['id' => 'practice_id']);
+    }
+      /* Геттер для названия практики */
+    public function getPracticeName()
+    {
+        return $this->practice->name;
+    }  
+      /* Геттер для названия практики */
+    public function getPracticeTimeVolume()
+    {
+        return $this->practice->time_volume;
+    }  
+     /**
+     * метод считает длительность занятия - сумма длятельности практик
+     * @param type $item_id
+     * @return type integer
+     */
+    public static function getItemTime($item_id) {
+        $result = 0;
+        $data = static::find()->joinWith('practice')
+                        ->where(['item_id' => $item_id])
+                        ->select('time_volume')
+                        ->asArray()->all();
+        foreach ($data as $items) {
+            $result += $items['time_volume'];
+        }
+        // echo '<pre>' . print_r($data, true) . '</pre>';
+        return $result;    
     }
 }
