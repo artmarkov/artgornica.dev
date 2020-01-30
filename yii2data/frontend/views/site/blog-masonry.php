@@ -5,7 +5,7 @@ use yii\widgets\LinkPager;
 use yii\helpers\Url;
 use artsoft\helpers\Html;
 
-$this->title = Yii::t('art', 'Blog');
+$this->title = 'Блог';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div id="blog">

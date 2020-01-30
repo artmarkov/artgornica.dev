@@ -64,7 +64,7 @@ $page = (isset($page)) ? $page : 'post';
             <div>
                 <!-- read more button -->
                 <?php if ($page != 'post'): ?>
-                    <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('art', 'Read more...') . '</span>', ["/site/{$post->slug}"], ['class' => 'btn btn-xs']) ?>
+                    <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase"> Читать дальше...</span>', ["/site/{$post->slug}"], ['class' => 'btn btn-xs']) ?>
             <?php endif; ?>
             </div>
 

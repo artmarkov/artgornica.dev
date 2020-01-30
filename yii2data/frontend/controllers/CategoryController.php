@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use artsoft\post\models\Post;
+use backend\modules\post\models\Post;
 use Yii;
 use artsoft\post\models\Category;
 use yii\data\Pagination;

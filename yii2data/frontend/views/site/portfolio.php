@@ -7,7 +7,7 @@ use artsoft\portfolio\models\Menu;
 use artsoft\portfolio\models\Items;
 use artsoft\block\models\Block;
 
-$this->title = Yii::t('art/section','Portfolio Items');
+$this->title = 'Портфолио';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-portfolio">

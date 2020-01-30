@@ -9,7 +9,7 @@ use yii\captcha\Captcha;
 use kartik\switchinput\SwitchInput;
 use artsoft\block\models\Block;
 
-$this->title = Yii::t('art', 'Contact');
+$this->title = 'Контакты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">

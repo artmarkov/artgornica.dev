@@ -9,7 +9,7 @@ use yii\helpers\Url;
 <!-- recent work -->
 <!--<div class="widget">
 
-    <h4 class="uppercase"><?= Yii::t('art/post', 'Recent works') ?></h4>
+    <h4 class="uppercase"></h4>
 
     <a class="popup-image thumb" href="../frontend/web/images/preview/slider/1.jpg">
         <img src="../frontend/web/images/1x1.png" class="img-responsive" data-src="holder.js/85x85/#888:#555555/auto/" alt="img" />

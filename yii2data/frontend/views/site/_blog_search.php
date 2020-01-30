@@ -4,7 +4,7 @@ use yii\helpers\Url;
 ?>
 <div class="widget">
 
-    <h4 class="uppercase"><?= Yii::t('art/post', 'Blog search') ?></h4>
+    <h4 class="uppercase">Блок поиска</h4>
 
 <?= Html::beginForm(Url::to(['/site/search']), 'get', ['class' => '']) ?>
         <div class="input-group">

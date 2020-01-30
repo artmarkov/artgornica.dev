@@ -8,7 +8,7 @@ use artsoft\portfolio\models\Items;
 use artsoft\block\models\Block;
 
 
-$this->title = Yii::t('art', 'About');
+$this->title = 'Обо мне';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">

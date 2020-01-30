@@ -9,14 +9,14 @@ use yii\helpers\Html;
     <div class="item-box appear-animation pull-left inner" data-animation="fadeInDown">
         <figure>
             <?php
-            $item = \artsoft\mediamanager\models\MediaManager::getMediaFirst($post->className(), $post->id);             
+            $item = \artsoft\mediamanager\models\MediaManager::getMediaFirst($post->className(), $post->id);
             if(!empty($item)) {
                 
                echo Html::a('<span class="overlay color"></span><span class="inner">
                     <span class="block fa fa-plus fsize20"></span>
                     <span class="uppercase"><strong>читать</strong> дальше</span>', ["/site/{$post->slug}"], ['class' => 'item-hover']);
-               echo Html::img(\artsoft\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']); 
-                    
+               echo Html::img(\artsoft\media\models\Media::findById($item['media_id'])->getThumbs()['medium'], ['class' => 'img-responsive', 'alt' => '']);
+
                     }
             ?>
         </figure>
@@ -26,7 +26,7 @@ use yii\helpers\Html;
             <?= $post->shortContent ?>
             <!-- read more button -->
             <p></p>
-            <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase">' . Yii::t('art', 'Read more...') . '</span>', ["/site/{$post->slug}"], ['class' => 'btn btn-primary btn-xs']) ?>
+            <?= Html::a('<i class="fa fa-sign-out"></i><span class="uppercase"> Читать дальше...</span>', ["/site/{$post->slug}"], ['class' => 'btn btn-primary btn-xs']) ?>
         </div>
     </div>
     <!-- /item -->
