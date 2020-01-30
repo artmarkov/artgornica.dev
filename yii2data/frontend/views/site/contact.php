@@ -7,13 +7,14 @@ use artsoft\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\captcha\Captcha;
 use kartik\switchinput\SwitchInput;
+use artsoft\block\models\Block;
 
 $this->title = Yii::t('art', 'Contact');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <section id="contact" class="container">
-        <h2><strong><em>Напишите мне.</em></strong> Я обязательно свяжусь с Вами!</h2>
+        <?= Block::getHtml('kontakty'); ?>
 
         <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
@@ -39,14 +40,14 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-4">
                  <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                 'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-            ]) ?>
+            ])->label('Проверочный код') ?>
             </div>
             <div class="col-md-8">
                 <?= $form->field($model->loadDefaultValues(), 'subscribe')->widget(SwitchInput::classname(), [
                                 'pluginOptions' => [
                                     'size' => 'small',
                                 ],
-                            ])->label(Yii::t('art', 'Subscribe to news')); ?>
+                            ])->label('Подписаться на новости'); ?>
             </div>
         </div>
         <div class="row pull-right">

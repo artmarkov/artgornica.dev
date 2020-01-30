@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use artsoft\portfolio\models\Menu;
 use artsoft\portfolio\models\Items;
-
+use artsoft\block\models\Block;
 
 $this->title = Yii::t('art/section','Portfolio Items');
 $this->params['breadcrumbs'][] = $this->title;
@@ -14,12 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <section id="portfolio">     
             <div class="container">
 
-                <h2><strong>Добро пожаловать</strong> в мою фотогалерею</h2>
-
-                <p class="lead">В фотогалерее представлены фотографии моих работ и работ моих клиентов. 
-                    Также здесь Вы можете познакомиться поближе <a href=""></a>
-                    с Арттерапией. Здесь Вы найдете много видео и фото с наших занятий.</p>
-
+                <?= Block::getHtml('dobro-pozalovat-v-mou-fotogalereu'); ?>
                
                     <?php 
 
@@ -45,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <section class="container">
 
             <div class="bs-callout text-center nomargin-bottom">
-                <h3>Давайте развиваться <strong>вместе</strong>! <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary btn-lg">Свяжитесь со мной</a></h3>
+                <h3><?= Block::getHtml('davajte-razvivatsa-vmeste'); ?> <a href="<?= \yii\helpers\Url::to('/contact') ?>" class="btn btn-primary btn-lg">Свяжитесь со мной</a></h3>
             </div>
 
         </section>

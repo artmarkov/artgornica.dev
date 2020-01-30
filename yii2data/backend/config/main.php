@@ -100,7 +100,7 @@ $config =  [
 	],
         'dbmanager' => [
             'class' => 'artsoft\dbmanager\DbmanagerModule',
-            'dumpPath' => '@frontend/web/db/',
+            'dumpPath' => '@public/db/',
         ],
         'slides' => [
 	    'class' => 'artsoft\slides\SlidesModule',
