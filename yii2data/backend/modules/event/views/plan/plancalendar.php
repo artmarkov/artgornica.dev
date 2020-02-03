@@ -9,26 +9,7 @@ use yii\web\JsExpression;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 //echo '<pre>' . print_r($events, true) . '</pre>';
-$this->title = Yii::t('art/event','Schedule Calendar');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('art/event','Events'), 'url' => ['default/index']];
-$this->params['breadcrumbs'][] = $this->title;
-
-?>
-
-<div class="event-index">
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-
-            <?php
-
+$this->title = Yii::t('art/event','Plan Calendar');
 
 // выбираем мышкой область или кликаем в пустое поле
 $JSSelect = <<<EOF
@@ -140,17 +121,25 @@ EOF;
 
 
 ?>
+<div class="plan-calendar">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
+                </div>
+            </div>
              <div class="row">
                 <div class="col-md-10">
 
-                    <?= \edofre\fullcalendarscheduler\FullcalendarScheduler::widget([
+                    <?= \artsoft\fullcalendarscheduler\FullcalendarScheduler::widget([
                                 'options' => [
                                     'lang' => 'ru',
                                 ],
                                 'header' => [
                                     'left'   => 'today prev,next',
                                     'center' => 'title',
-                                    'right'  => 'agendaDay,agendaWeek,month,listMonth',
+                                    'right'  => 'agendaDay,agendaTwoDay,agendaWeek,month,listMonth',
                                 ],
                                 'clientOptions' => [
                                     'schedulerLicenseKey' => 'GPL-My-Project-Is-Open-Source',
@@ -158,7 +147,7 @@ EOF;
                                     'selectHelper' => true,//Следует ли рисовать событие” заполнитель " во время перетаскивания
                                     'nowIndicator' => true, //Отображение маркера, указывающего Текущее время
                                     'minTime' => '07:00:00', // Определяет первый временной интервал, который будет отображаться для каждого дня
-                                    'maxTime' => '22:00:00', 
+                                    'maxTime' => '22:00:00',
                                     'slotDuration' => '00:15:00', // Частота отображения временных интервалов.
                                     'droppable' => true,
                                     'editable' => true,
@@ -177,14 +166,14 @@ EOF;
                                     ],
                                     'aspectRatio'       => 1.8,
                                     'scrollTime'        => '00:00', // undo default 6am scrollTime
-                                    'defaultView' => 'month',
-//                                    'views'  => [
-//                                            'agendaTwoDay' => [
-//                                                'type' => 'agenda',
-//                                                'duration' => ['days' => 3],
-//                                                'groupByResource' => true,
-//                                            ],
-//                                    ],
+                                    'defaultView' => 'agendaWeek',
+                                    'views'  => [
+                                            'agendaTwoDay' => [
+                                                'type' => 'agenda',
+                                                'duration' => ['days' => 3],
+                                                'groupByResource' => true,
+                                            ],
+                                    ],
                                     'resourceLabelText' => Yii::t('art/event','Event Places'),
                                            // 'resourceGroupField' => 'building',
                                     'resources' => \yii\helpers\Url::to(['/event/plan/resources']),
@@ -195,32 +184,29 @@ EOF;
                                                  'end' => '21:00',
                                     ],
                                 ],
-]);
-?>
-
-</div>
-                <div class="col-md-2">
-
-                          <div id="color-places">
-                                <h4><?= Yii::t('art/event','Event Places');?></h4>
-                            <?php $data = backend\modules\event\models\EventPlace::getEventPlacesList();?>
-                            <?php foreach ($data as $field) : ?>
-                               <div class="fc-event"
-                                    style="background-color: <?= $field['event_color']; ?>;
-                                            border-color: <?= $field['event_color']; ?>;
-                                            color: <?= $field['event_text_color']; ?>;">
-                                    <?= $field['name']; ?></div>
-                            <?php   endforeach;?>
-                    </div>
+]); ?>
 
                 </div>
-            </div>
+                 <div class="col-md-2">
+                     <div id="color-places">
+                         <h4><?= Yii::t('art/event', 'Event Places'); ?></h4>
+                         <?php $data = backend\modules\event\models\EventPlace::getEventPlacesList(); ?>
+                         <?php foreach ($data as $field) : ?>
+                             <div class="fc-event"
+                                  style="background-color: <?= $field['event_color']; ?>;
+                                          border-color: <?= $field['event_color']; ?>;
+                                          color: <?= $field['event_text_color']; ?>;">
+                                 <?= $field['name']; ?></div>
+                         <?php endforeach; ?>
+                     </div>
+                 </div>
+             </div>
         </div>
     </div>
 </div>
 
 <?php \yii\bootstrap\Modal::begin([
-    'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('art/event', 'Event Schedules') . '</h3>',
+    'header' => '<h3 class="lte-hide-title page-title">' . Yii::t('art/event', 'Plan Schedules') . '</h3>',
     'size' => 'modal-lg',
     'id' => 'plan-modal',
     //'footer' => 'footer',

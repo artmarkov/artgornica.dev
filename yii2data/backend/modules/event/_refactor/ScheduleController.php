@@ -3,12 +3,12 @@
 namespace backend\modules\event\controllers;
 
 use backend\modules\event\models\EventSchedule;
-use edofre\fullcalendarscheduler\models\Event as BaseEvent;
+use artsoft\fullcalendarscheduler\models\Event as BaseEvent;
 use Yii;
 use backend\controllers\DefaultController;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
-use edofre\fullcalendarscheduler\models\Resource;
+use artsoft\fullcalendarscheduler\models\Resource;
 /**
  * ScheduleController implements the CRUD actions for backend\modules\event\models\EventSchedule model.
  */

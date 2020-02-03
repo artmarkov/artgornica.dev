@@ -5,8 +5,8 @@ namespace backend\modules\event\controllers;
 use Yii;
 use backend\controllers\DefaultController;
 use backend\modules\event\models\EventPlan;
-use edofre\fullcalendarscheduler\models\Event as BaseEvent;
-use edofre\fullcalendarscheduler\models\Resource;
+use artsoft\fullcalendarscheduler\models\Event as BaseEvent;
+use artsoft\fullcalendarscheduler\models\Resource;
 use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 

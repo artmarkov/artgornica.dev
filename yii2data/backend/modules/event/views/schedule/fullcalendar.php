@@ -10,24 +10,7 @@ use yii\web\JsExpression;
 
 //echo '<pre>' . print_r($events, true) . '</pre>';
 $this->title = Yii::t('art/event','Schedule Calendar');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('art/event','Events'), 'url' => ['default/index']];
-$this->params['breadcrumbs'][] = $this->title;
 
-?>
-
-<div class="event-index">
-
-    <div class="row">
-        <div class="col-sm-12">
-            <h3 class="lte-hide-title page-title"><?=  Html::encode($this->title) ?></h3>
-
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-
-            <?php
 
 
 // выбираем мышкой область или кликаем в пустое поле
@@ -140,10 +123,18 @@ EOF;
 
 
 ?>
-             <div class="row">
+<div class="full-calendar">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="lte-hide-title page-title"><?= Html::encode($this->title) ?></h3>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-10">
 
-                    <?= \edofre\fullcalendarscheduler\FullcalendarScheduler::widget([
+                    <?= \artsoft\fullcalendarscheduler\FullcalendarScheduler::widget([
                                 'options' => [
                                     'lang' => 'ru',
                                 ],
@@ -195,24 +186,21 @@ EOF;
                                                  'end' => '21:00',
                                     ],
                                 ],
-]);
-?>
+]); ?>
 
-</div>
+                </div>
                 <div class="col-md-2">
-
-                          <div id="color-places">
-                                <h4><?= Yii::t('art/event','Event Places');?></h4>
-                            <?php $data = backend\modules\event\models\EventPlace::getEventPlacesList();?>
-                            <?php foreach ($data as $field) : ?>
-                               <div class="fc-event"
-                                    style="background-color: <?= $field['event_color']; ?>;
-                                            border-color: <?= $field['event_color']; ?>;
-                                            color: <?= $field['event_text_color']; ?>;">
-                                    <?= $field['name']; ?></div>
-                            <?php   endforeach;?>
+                    <div id="color-places">
+                        <h4><?= Yii::t('art/event', 'Event Places'); ?></h4>
+                        <?php $data = backend\modules\event\models\EventPlace::getEventPlacesList(); ?>
+                        <?php foreach ($data as $field) : ?>
+                            <div class="fc-event"
+                                 style="background-color: <?= $field['event_color']; ?>;
+                                         border-color: <?= $field['event_color']; ?>;
+                                         color: <?= $field['event_text_color']; ?>;">
+                                <?= $field['name']; ?></div>
+                        <?php endforeach; ?>
                     </div>
-
                 </div>
             </div>
         </div>
