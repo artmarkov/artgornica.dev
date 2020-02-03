@@ -466,7 +466,9 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="background-events.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/artgornica.dev/yii2-fullcalendar-scheduler/demos/background-events.php" />
+    <configuration name="background-events.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/artgornica.dev/yii2-fullcalendar-scheduler/demos/background-events.php">
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.background-events.php" />

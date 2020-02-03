@@ -65,6 +65,7 @@ class EventSchedule extends \artsoft\db\ActiveRecord
                     ActiveRecord::EVENT_AFTER_FIND => 'start_time',
                 ],
                 'timeAttribute' => 'start_timestamp',
+                'timeFormat' => 'd.m.Y H:i',
             ],
             [
                 'class' => DateToTimeBehavior::className(),
@@ -73,6 +74,7 @@ class EventSchedule extends \artsoft\db\ActiveRecord
                     ActiveRecord::EVENT_AFTER_FIND => 'end_time',
                 ],
                 'timeAttribute' => 'end_timestamp',
+                'timeFormat' => 'd.m.Y H:i',
             ]
         ];
     }
